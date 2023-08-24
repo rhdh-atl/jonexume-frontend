@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: jonexume-poi-map-app-dev
+  annotations:
+    argocd/app-name: jonexume-poi-map-app-dev
+    backstage.io/kubernetes-id: jonexume-poi-map-app
+    backstage.io/kubernetes-namespace: jonexume
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-atl/jonexume-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/dev-pipelines/ns/jonexume/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/k8s/ns/jonexume/deployments/jonexume-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.j0i9yf30.eastus2.aroapp.io/#https://github.com/rhdh-atl/jonexume-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://jonexume-poi-map-app-jonexume.apps.j0i9yf30.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "jonexume"
+  system: workshop-system-jonexume
+  consumesApis:
+    - gateway-api-jonexume
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-jonexume
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "jonexume"
